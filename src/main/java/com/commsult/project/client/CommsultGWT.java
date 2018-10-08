@@ -53,6 +53,7 @@ public class CommsultGWT implements EntryPoint {
 		valuePanel.add(tempPanel);
 		valuePanel.add(timePanel);
 		valuePanel.add(windPanel);
+		valuePanel.addStyleName("fullpanel");
 		RootPanel.get("valueContainer").add(valuePanel);
 	}
 	
