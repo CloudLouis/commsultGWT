@@ -28,6 +28,8 @@ public class CommsultGWT implements EntryPoint {
 	  private Image airconditioning = new Image("images/AirConditioning.png");
 	  private Image blinds = new Image("images/Blinds.png");
 	  private Image lightbulb = new Image("images/LightBulb.png");
+	  
+	  //OwO
 
 	public void onModuleLoad() {
 		MainController controllerObserver = new MainController();
