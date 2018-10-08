@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
 <!--
   When updating your version of GWT, you should also update this DTD reference,
   so that your app can take advantage of the latest GWT module capabilities.
@@ -18,8 +18,8 @@
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->
 <!--   <inherits name='com.google.gwt.user.theme.clean.Clean'/> -->
-  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
-  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+<!--   <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+<!--   <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
   <!-- Other module inherits                                      -->

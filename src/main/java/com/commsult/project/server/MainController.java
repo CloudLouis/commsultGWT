@@ -17,15 +17,15 @@ public class MainController implements PropertyChangeListener {
 		System.out.println(evt.getPropertyName() + " " + evt.getNewValue());
 		if (isTemperature(evt)) {
 			String event = evt.getPropertyName() + " "+evt.getNewValue();
-			commsultgwt.printSomething(event);
+			commsultgwt.updateTemp();
 		}
 		else if (isWind(evt)) {
 			String event = evt.getPropertyName() + " "+evt.getNewValue();
-			commsultgwt.printSomething(event);
+			commsultgwt.updateWind();
 		}
 		else if (isTime(evt)) {
 			String event = evt.getPropertyName() + " "+evt.getNewValue();
-			commsultgwt.printSomething(event);
+
 		}
 	}
 
