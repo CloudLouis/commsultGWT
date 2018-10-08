@@ -18,12 +18,6 @@ public class CommsultGWT implements EntryPoint {
 	
 	  private Label labelPrint = new Label();
 	  private HorizontalPanel valuePanel = new HorizontalPanel();
-	  private VerticalPanel tempPanel = new VerticalPanel();
-	  private VerticalPanel timePanel = new VerticalPanel();
-	  private VerticalPanel windPanel = new VerticalPanel();
-	  private Label tempLabel = new Label();
-	  private Label timeLabel = new Label();
-	  private Label windLabel = new Label();
 	  private Label tempValue = new Label();
 	  private Label timeValue = new Label();
 	  private Label windValue = new Label();
@@ -53,8 +47,9 @@ public class CommsultGWT implements EntryPoint {
 		valuePanel.add(tempPanel);
 		valuePanel.add(timePanel);
 		valuePanel.add(windPanel);
-		valuePanel.addStyleName("fullpanel");
-		RootPanel.get("valueContainer").add(valuePanel);
+		valuePanel.addStyleName("valuePanel");
+		
+		RootPanel.get("mainContainer").add(valuePanel);
 	}
 	
 	public void printSomething(String toprint) {

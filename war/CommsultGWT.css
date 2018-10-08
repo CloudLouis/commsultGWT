@@ -1,4 +1,21 @@
-.fullpanel{
-	width: 100%;
-	background-color: rosybrown;
+html{
+	height:100%;
 }
+body{
+	height: inherit;
+}
+.mainContainer{
+	height: inherit;
+	width: 100%;
+	background: beige;
+}
+.valuePanel{
+	position: fixed;
+	table-layout: fixed;
+	top: 10%;
+	width: 100%;
+	background-color: blue;
+}
+	.valuePanel td{
+		width: 50px;
+	}
