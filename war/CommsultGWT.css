@@ -30,3 +30,12 @@ body{
 	.imagePanel img{
 		width:140px;
 	}
+.gwt-Label-Temperature{
+	font-size:50px;
+}
+.gwt-Label-Time{
+	font-size:75px;
+}
+.gwt-Label-Wind{
+	font-size:50px;
+}
