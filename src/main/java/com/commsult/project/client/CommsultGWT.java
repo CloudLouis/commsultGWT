@@ -18,9 +18,15 @@ public class CommsultGWT implements EntryPoint {
 	
 	  private Label labelPrint = new Label();
 	  private HorizontalPanel valuePanel = new HorizontalPanel();
+	  private VerticalPanel tempPanel = new VerticalPanel();
+	  private VerticalPanel timePanel = new VerticalPanel();
+	  private VerticalPanel windPanel = new VerticalPanel();
 	  private Label tempLabel = new Label();
 	  private Label timeLabel = new Label();
 	  private Label windLabel = new Label();
+	  private Label tempValue = new Label();
+	  private Label timeValue = new Label();
+	  private Label windValue = new Label();
 	  private VerticalPanel mainPanel = new VerticalPanel();	
 
 	public void onModuleLoad() {
@@ -28,9 +34,26 @@ public class CommsultGWT implements EntryPoint {
 		ArrayList<Sensors> sensors = new ArrayList<>();
 		sensors.add(new Thermometer(controllerObserver));
 		sensors.get(0).setMeasurement(10.00);
-		valuePanel.add(tempLabel);
-		valuePanel.add(timeLabel);
-		valuePanel.add(windLabel);
+		tempLabel.setText("It's temperature!");
+		timeLabel.setText("It's time!");
+		windLabel.setText("It's wind!");
+		
+		tempPanel.add(tempLabel);
+		timePanel.add(timeLabel);
+		windPanel.add(windLabel);
+		
+		tempValue.setText("100");
+		timeValue.setText("10");
+		windValue.setText("250!");
+		
+		tempPanel.add(tempValue);
+		timePanel.add(timeValue);
+		windPanel.add(windValue);
+	
+		valuePanel.add(tempPanel);
+		valuePanel.add(timePanel);
+		valuePanel.add(windPanel);
+		RootPanel.get("valueContainer").add(valuePanel);
 	}
 	
 	public void printSomething(String toprint) {
