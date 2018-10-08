@@ -28,25 +28,13 @@ public class CommsultGWT implements EntryPoint {
 		ArrayList<Sensors> sensors = new ArrayList<>();
 		sensors.add(new Thermometer(controllerObserver));
 		sensors.get(0).setMeasurement(10.00);
-		tempLabel.setText("It's temperature!");
-		timeLabel.setText("It's time!");
-		windLabel.setText("It's wind!");
-		
-		tempPanel.add(tempLabel);
-		timePanel.add(timeLabel);
-		windPanel.add(windLabel);
-		
-		tempValue.setText("100");
-		timeValue.setText("10");
-		windValue.setText("250!");
-		
-		tempPanel.add(tempValue);
-		timePanel.add(timeValue);
-		windPanel.add(windValue);
+		tempValue.setText("It's temperature!");
+		timeValue.setText("It's time!");
+		windValue.setText("It's wind!");
 	
-		valuePanel.add(tempPanel);
-		valuePanel.add(timePanel);
-		valuePanel.add(windPanel);
+		valuePanel.add(tempValue);
+		valuePanel.add(timeValue);
+		valuePanel.add(windValue);
 		valuePanel.addStyleName("valuePanel");
 		
 		RootPanel.get("mainContainer").add(valuePanel);
