@@ -1,5 +1,4 @@
 target/
-war/
 gwt-unitCache/
 bin/
 .classpath

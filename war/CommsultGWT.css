@@ -1,0 +1,32 @@
+html{
+	height:100%;
+}
+body{
+	height: inherit;
+}
+.mainContainer{
+	height: inherit;
+	width: 100%;
+	background: beige;
+}
+.valuePanel{
+	position: fixed;
+	table-layout: fixed;
+	top: 10%;
+	width: 100%;
+}
+	.valuePanel td{
+		text-align: center;
+	}
+.imagePanel{
+	position: fixed;
+	table-layout: fixed;
+	bottom: 10%;
+	width: 100%;
+}
+	.imagePanel td{
+		text-align:center;
+	}
+	.imagePanel img{
+		width:140px;
+	}

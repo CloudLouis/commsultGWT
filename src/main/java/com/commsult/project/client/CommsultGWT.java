@@ -7,6 +7,7 @@ import com.commsult.project.server.Sensors;
 import com.commsult.project.server.Thermometer;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -21,7 +22,10 @@ public class CommsultGWT implements EntryPoint {
 	  private Label tempValue = new Label();
 	  private Label timeValue = new Label();
 	  private Label windValue = new Label();
-	  private VerticalPanel mainPanel = new VerticalPanel();	
+	  private HorizontalPanel imagePanel = new HorizontalPanel();
+	  private Image airconditioning = new Image("images/AirConditioning.png");
+	  private Image blinds = new Image("images/Blinds.png");
+	  private Image lightbulb = new Image("images/LightBulb.png");
 
 	public void onModuleLoad() {
 		MainController controllerObserver = new MainController();
@@ -38,6 +42,13 @@ public class CommsultGWT implements EntryPoint {
 		valuePanel.addStyleName("valuePanel");
 		
 		RootPanel.get("mainContainer").add(valuePanel);
+		
+		imagePanel.add(airconditioning);
+		imagePanel.add(blinds);
+		imagePanel.add(lightbulb);
+		imagePanel.addStyleName("imagePanel");
+		
+		RootPanel.get("mainContainer").add(imagePanel);
 	}
 	
 	public void printSomething(String toprint) {
