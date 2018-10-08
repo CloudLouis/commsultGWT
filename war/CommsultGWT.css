@@ -21,7 +21,7 @@ body{
 .imagePanel{
 	position: fixed;
 	table-layout: fixed;
-	bottom: 10%;
+	bottom: 15%;
 	width: 100%;
 }
 	.imagePanel td{

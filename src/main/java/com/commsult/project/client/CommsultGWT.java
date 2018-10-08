@@ -2,6 +2,8 @@ package com.commsult.project.client;
 
 import java.util.ArrayList;
 
+import com.commsult.project.server.Anemometer;
+import com.commsult.project.server.Clock;
 import com.commsult.project.server.MainController;
 import com.commsult.project.server.Sensors;
 import com.commsult.project.server.Thermometer;
@@ -31,11 +33,16 @@ public class CommsultGWT implements EntryPoint {
 		MainController controllerObserver = new MainController();
 		ArrayList<Sensors> sensors = new ArrayList<>();
 		sensors.add(new Thermometer(controllerObserver));
-		sensors.get(0).setMeasurement(10.00);
-		tempValue.setText("It's temperature!");
-		timeValue.setText("It's time!");
-		windValue.setText("It's wind!");
-	
+		sensors.add(new Clock(controllerObserver));
+		sensors.add(new Anemometer(controllerObserver));
+		sensors.get(0).setMeasurement(24.00);
+		sensors.get(1).setMeasurement(0000.00);
+		sensors.get(2).setMeasurement(10.00);
+		tempValue.setText(sensors.get(0).getMeasurement().toString());
+		timeValue.setText(sensors.get(1).getMeasurement().toString());
+		windValue.setText(sensors.get(2).getMeasurement().toString());
+		
+		
 		valuePanel.add(tempValue);
 		valuePanel.add(timeValue);
 		valuePanel.add(windValue);
@@ -44,8 +51,8 @@ public class CommsultGWT implements EntryPoint {
 		RootPanel.get("mainContainer").add(valuePanel);
 		
 		imagePanel.add(airconditioning);
-		imagePanel.add(blinds);
 		imagePanel.add(lightbulb);
+		imagePanel.add(blinds);
 		imagePanel.addStyleName("imagePanel");
 		
 		RootPanel.get("mainContainer").add(imagePanel);
