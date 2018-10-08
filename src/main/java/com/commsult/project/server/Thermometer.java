@@ -3,6 +3,9 @@ package com.commsult.project.server;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.google.gwt.core.shared.GWT;
+
+
 public class Thermometer implements Sensors {
 	
 	private Double measurement;
@@ -15,14 +18,14 @@ public class Thermometer implements Sensors {
 
 	@Override
 	public void updateMeasurement(Double measurement) {
-		// TODO Auto-generated method stub
 		support.firePropertyChange("Temperature", this.measurement, measurement);
 	}
 
 	@Override
 	public void setMeasurement(Double measurement) {
 		// TODO Auto-generated method stub
-		updateMeasurement(measurement);
+		GWT.log("set");
+		support.firePropertyChange("Temperature", this.measurement, measurement);
 		this.measurement = measurement;
 	}
 

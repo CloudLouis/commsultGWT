@@ -1,4 +1,74 @@
-.fullpanel{
+body, table td, select{
+	font-family: Arial Unicode MS, Arial, sans-serif;
+}
+/* body{ */
+/* 	background-image:linear-gradient(to right, #fdfcfb, #e2d1c3); */
+/* } */
+body{
+	background-image:linear-gradient(to right, #a1c4fd , #c2e9fb);
+}
+.mainContainer{
+	height: inherit;
 	width: 100%;
-	background-color: rosybrown;
+	background: beige;
+}
+.valuePanel{
+	position: fixed;
+	table-layout: fixed;
+	top: 10%;	
+	width: 100%;
+}
+	.valuePanel td{
+		text-align: center;
+	}
+.imagePanel{
+	position: fixed;	
+	table-layout: fixed;
+	bottom: 15%;
+	width: 100%;
+}
+	.imagePanel td{
+		text-align:center;
+	}
+	.imagePanel img{
+		width:140px;
+	}
+.buttonPanel{
+	position: fixed;	
+	table-layout: fixed;
+	bottom: 7%;
+	width: 100%;
+}
+	.buttonPanel td{
+    	text-shadow: -6px -6px black, -6px 6px black, 6px -6px black, 6px 6px black;
+		font-size:45px;
+		text-align:center;
+	}
+	
+.titlePanel{
+	position: fixed;	
+	table-layout: fixed;
+	bottom: 37%;
+	width: 100%;
+}
+	.titlePanel td{
+		font-size:25px;
+		text-align:center;
+		color:white;
+		text-shadow: 0 0 12px silver;
+	}
+.gwt-Label-Temperature{
+	font-size:50px;
+	color:orange;
+	text-shadow: 0 0 12px ivory;
+}
+.gwt-Label-Time{
+	font-size:75px;
+	color:white;
+	text-shadow: 0 0 12px gold;
+}
+.gwt-Label-Wind{
+	font-size:50px;
+	color:ghostwhite;
+	text-shadow: 0 0 12px darkseagreen;
 }

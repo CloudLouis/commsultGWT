@@ -10,7 +10,7 @@ public class Clock implements Sensors {
 	
 	public Clock(PropertyChangeListener pcl) {
 		support = new PropertyChangeSupport(this);
-		addPropertyChangeListener(pcl);
+		this.addPropertyChangeListener(pcl);
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class Clock implements Sensors {
 	@Override
 	public void setMeasurement(Double measurement) {
 		// TODO Auto-generated method stub
-		updateMeasurement(measurement);
 		this.measurement = measurement;
+		updateMeasurement(measurement);
 	}
 
 	@Override

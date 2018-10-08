@@ -1,5 +1,9 @@
 package com.commsult.project.client;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -13,6 +17,7 @@ import com.commsult.project.server.MainController;
 import com.commsult.project.server.Sensors;
 import com.commsult.project.server.Thermometer;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -23,19 +28,20 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class CommsultGWT implements EntryPoint {
+public class CommsultGWT implements EntryPoint, PropertyChangeListener {
 	
-	  private int upperbound = 30000;
+	  
+	  private int upperbound = 5000;
 	  private int lowerbound = 5000;
 	  private int CLOCK_INTERVAL = 1000;
 	  private Random rand = new Random(10);
-	  private int TEMP_INTERVAL = rand.nextInt(upperbound-lowerbound) + lowerbound;
-	  private int WIND_INTERVAL = rand.nextInt(upperbound-lowerbound) + lowerbound;
+	  private int TEMP_INTERVAL = lowerbound + rand.nextInt(upperbound);
+	  private int WIND_INTERVAL = lowerbound + rand.nextInt(upperbound);;
 	  private Label labelPrint = new Label();
 	  private HorizontalPanel valuePanel = new HorizontalPanel();
-	  private Label tempValue = new Label();
-	  private Label timeValue = new Label();
-	  private Label windValue = new Label();
+	  private static Label tempValue = new Label();
+	  private static Label timeValue = new Label();
+	  private static Label windValue = new Label();
 	  
 	  private VerticalPanel bottomPanel = new VerticalPanel();
 	  
@@ -55,15 +61,19 @@ public class CommsultGWT implements EntryPoint {
 	  private Label buttonLb = new Label("\u25A0");
 	  
 	  private Date t;
-	  private ArrayList<Sensors> sensors = new ArrayList<>();
+	  private static ArrayList<Sensors> sensors = new ArrayList<>();
 
 	public void onModuleLoad() {
-		MainController controllerObserver = new MainController();
-		sensors.add(new Thermometer(controllerObserver));
-		sensors.add(new Anemometer(controllerObserver));
-		sensors.get(0).setMeasurement(24.00);
-		sensors.get(1).setMeasurement(10.00);
-		refreshClock();
+		sensors.add(new Thermometer(this));
+		sensors.add(new Anemometer(this));
+		sensors.get(0).setMeasurement((-10.0 + rand.nextDouble() * 40.0));
+		sensors.get(1).setMeasurement((0.0 + rand.nextDouble() *70.0));
+		try {
+			refreshClock();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		tempValue.addStyleDependentName("Temperature");
 		valuePanel.add(tempValue);
@@ -99,7 +109,12 @@ public class CommsultGWT implements EntryPoint {
 	    Timer clockTimer = new Timer() {
 	    	@Override
 	    	public void run() {
-	          refreshClock();
+	          try {
+				refreshClock();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    	}
 	    };
 	    clockTimer.scheduleRepeating(CLOCK_INTERVAL);
@@ -107,7 +122,7 @@ public class CommsultGWT implements EntryPoint {
 	    Timer tempTimer = new Timer() {
 	    	@Override
 	    	public void run() {
-	    		sensors.get(0).setMeasurement((-10.0 + rand.nextDouble() * 30.0));
+	    		sensors.get(0).setMeasurement((-10.0 + rand.nextDouble() * 40.0));
 	    	}
 	    };
 	    tempTimer.scheduleRepeating(TEMP_INTERVAL);
@@ -122,20 +137,63 @@ public class CommsultGWT implements EntryPoint {
 	}
 	
 
-	public void refreshClock() {
+	public void refreshClock() throws ParseException {
 		t = new Date();
+		SimpleDateFormat parser = new SimpleDateFormat("HH:mm:ss");
 		@SuppressWarnings("deprecation")
 		String formattedtime = DateTimeFormat.getMediumTimeFormat().format(t);
 		timeValue.setText(formattedtime);
+		Date comp = parser.parse(formattedtime);
+		Date limit = parser.parse("18:00:00");
+		if(comp.after(limit)) {
+			buttonLb.getElement().getStyle().setColor("yellow");
+		}else {
+			buttonLb.getElement().getStyle().setColor("black");
+		}
 	}
 	
-	public void updateTemp() {
-		tempValue.setText("FUCK");
+	public void updateTemp(Double val) {
+		tempValue.setText((val.toString().substring(0, 4))+"\u00b0C");
+		if(val>25.00) {
+			buttonAc.getElement().getStyle().setColor("yellow");
+		}else {
+			buttonAc.getElement().getStyle().setColor("black");
+		}
 	}
 	
-	public void updateWind() {
-		windValue.setText("FUCK");
+	public void updateWind(Double val) {
+		windValue.setText((val.toString().substring(0, 4))+" m/h");
+		if(val>15.00) {
+			buttonB.getElement().getStyle().setColor("yellow");
+		}else {
+			buttonB.getElement().getStyle().setColor("black");
+		}
 	}
-	
-	
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		GWT.log("change");
+		if (isTemperature(evt)) {
+			updateTemp((Double)evt.getNewValue());
+		}
+		else if (isWind(evt)) {
+			updateWind((Double)evt.getNewValue());
+		}
+		else if (isTime(evt)) {
+			String event = evt.getPropertyName() + " "+evt.getNewValue();
+
+		}
+	}
+
+	private boolean isTime(PropertyChangeEvent evt) {
+		return evt.getPropertyName().equalsIgnoreCase("Time");
+	}
+
+	private boolean isWind(PropertyChangeEvent evt) {
+		return evt.getPropertyName().equalsIgnoreCase("Wind");
+	}
+
+	private boolean isTemperature(PropertyChangeEvent evt) {
+		return evt.getPropertyName().equalsIgnoreCase("Temperature");
+	}
 }
